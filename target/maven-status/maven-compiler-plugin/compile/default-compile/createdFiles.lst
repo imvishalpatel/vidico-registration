@@ -1,0 +1,5 @@
+com\vidico\jsp\controller\AddUserServlet.class
+com\vidico\jsp\listener\MongoDBContextListener.class
+com\vidico\jsp\model\User.class
+com\vidico\jsp\service\UserConverter.class
+com\vidico\jsp\dao\UserDAO.class
