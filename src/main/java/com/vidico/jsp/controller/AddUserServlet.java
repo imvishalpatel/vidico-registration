@@ -22,13 +22,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/addUser")
 public class AddUserServlet extends HttpServlet {
-
+    
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-
+        
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if (username.equals("") || username == null || password.equals("") || password == null) {
+        String email = request.getParameter("email");
+        String firstName = request.getParameter("firstname");
+        String lastName = request.getParameter("lastname");
+        
+        if (username.equals("") || username == null || password.equals("") || password == null || email.equals("") || email == null) {
             request.setAttribute("error", "Mandatory Parameters Missing");
             RequestDispatcher rd = getServletContext().getRequestDispatcher(
                     "/signup.jsp");
@@ -37,13 +41,17 @@ public class AddUserServlet extends HttpServlet {
             User u = new User();
             u.setUsername(username);
             u.setPassword(password);
+            u.setEmail(email);
+            u.setFirstName(firstName);
+            u.setLastName(lastName);
+            
             MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
-
+            
             UserDAO userDao = new UserDAO(mongo);
             userDao.creatUser(u);
             System.out.println("User created successfully with id=" + u.getId());
             request.setAttribute("success", "Person Added Successfully");
-
+            
             RequestDispatcher rd = getServletContext().getRequestDispatcher(
                     "/login.jsp");
             rd.forward(request, response);

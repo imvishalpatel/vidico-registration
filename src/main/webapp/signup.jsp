@@ -14,26 +14,49 @@
         <title>Sign up Page</title>
     </head>
     <body>
-    <c:if test="${requestScope.error ne null}">
-        <strong style="color:red">
-            <c:out value="${requestScope.error}"></c:out>
-        </strong>
-    </c:if>
-    <c:if test="${requestScope.success ne null}">
-        <strong style="color:green">
-            <c:out value="${requestScope.success}"></c:out>
-        </strong>
-    </c:if>
+        <c:if test="${requestScope.error ne null}">
+            <strong style="color:red">
+                <c:out value="${requestScope.error}"></c:out>
+                </strong>
+        </c:if>
+        <c:if test="${requestScope.success ne null}">
+            <strong style="color:green">
+                <c:out value="${requestScope.success}"></c:out>
+                </strong>
+        </c:if>
 
-    <c:url value="/addUser" var="addUser"></c:url>
-    <c:url value="/login" var="Login"></c:url>
+        <c:url value="/addUser" var="addUser"></c:url>
+        <c:url value="/login" var="Login"></c:url>
         <%-- Sing up user --%>
 
-    <form action='<c:out value="${addUser}"></c:out>' method="post">
-        Username: <input type="text" name="username"><br> password: <input
-            type="password" name="password"><br> <input type="submit"
-            value="Sign up">
-    </form>
+        <form action='<c:out value="${addUser}"></c:out>' method="post">
+            <table>
+                <tr>
+                    <td> Username:</td>
+                    <td><input type="text" name="username"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td>Firstname:</td>
+                    <td><input type="text" name="firstname"></td>
+                </tr>
+                <tr>
+                    <td>Lastname:</td>
+                    <td><input type="text" name="lastname"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Sign up"></td>
+                </tr>
+            </table>
 
-</body>
+        </form>
+
+    </body>
 </html>

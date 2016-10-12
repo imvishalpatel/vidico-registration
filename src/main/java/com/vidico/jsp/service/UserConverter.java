@@ -8,6 +8,7 @@ package com.vidico.jsp.service;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import com.vidico.jsp.model.User;
+import java.util.Date;
 import org.bson.types.ObjectId;
 
 /**
@@ -20,6 +21,15 @@ public class UserConverter {
         BasicDBObjectBuilder builder = BasicDBObjectBuilder.start()
                 .append("username", u.getUsername())
                 .append("password", u.getPassword())
+                .append("firstname", u.getFirstName())
+                .append("lastname", u.getLastName())
+                .append("email", u.getEmail())
+                .append("isAdmin", u.isIsAdmin())
+                .append("lastAccessTime", new Date())
+                .append("rating", 0)
+                .append("verified", u.isVerified())
+                .append("registeredTime", new Date())
+                .append("reportedSpamCount", u.getReportedSpamCount())
                 .append("_id", u.getId());
 
         return builder.get();
